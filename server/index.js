@@ -2,17 +2,26 @@ import express from "express";
 import mysql from "mysql"
 import cors from 'cors';
 import bcrypt from "bcrypt"
+
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const app=express();
+
 app.use(cors());
 const db = mysql.createPool({
     connectionLimit:100,
-    host:"127.0.0.1",
-    user:"root",
-    password:"root123",
-    database:"newsdb",
-    port:"3306"
+    host:process.env.HOST,
+    user:process.env.USER,
+    password:process.env.PASSWORD,
+    database:process.env.DATABASE,
+    port:process.env.PORT
 })
 
+console.log(process.env.PORT);
+
+>>>>>>> main
 db.getConnection( (err, connection)=> {
     if (err) throw (err)
     console.log ("DB connected successful: " + connection.threadId)

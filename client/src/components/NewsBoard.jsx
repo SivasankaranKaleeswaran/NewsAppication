@@ -42,8 +42,13 @@ export default function NewsBoard({ category,country,userid,isFavEnabled}) {
   
 
   return (
+<<<<<<< HEAD
     <div style={{backgroundColor:"#86CDEE"}}>
       <h2 className="text-center mb-4">
+=======
+    <div style={{backgroundColor:"#01070B"}}>
+      <h2 className="text-center mb-4" style={{color:"white"}}>
+>>>>>>> main
         Latest <span className="badge bg-danger" style={{marginTop:"15px", marginBottom: "15px"}}>News</span>
       </h2>
       <div className="d-flex flex-row flex-wrap justify-content-center">
