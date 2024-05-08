@@ -2,7 +2,12 @@ import express from "express";
 import mysql from "mysql"
 import cors from 'cors';
 import bcrypt from "bcrypt"
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const app=express();
+
 app.use(cors());
 const db = mysql.createPool({
     connectionLimit:100,
@@ -12,6 +17,8 @@ const db = mysql.createPool({
     database:"newsdb",
     port:"3306"
 })
+
+console.log(process.env.PORT);
 
 db.getConnection( (err, connection)=> {
     if (err) throw (err)
