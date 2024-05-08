@@ -1,0 +1,14 @@
+.nav-link .weather-data-hover {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .nav-link:hover .weather-data-hover {
+    display: block;
+  }
+  
