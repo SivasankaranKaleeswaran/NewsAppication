@@ -54,8 +54,14 @@ function Navbar({
           setShortForecast(shortForecast);
           setDetailedForecast(detailedForecast);
           console.log(detailedForecast);
-          const iconKey = shortForecast.toLowerCase();
-          setIcon(weatherIcons[iconKey]);
+          const iconKey =  'sunny';//shortForecast.toLowerCase();
+          const key = Object.keys(weatherIcons).find((k) =>
+            k.includes(iconKey)
+          );
+          console.log("key "+key)
+          if (key) {
+            setIcon[weatherIcons[key]];
+          }
         });
       } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -99,7 +105,11 @@ function Navbar({
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          style={{ display: "flex" }}
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
               <a
@@ -255,45 +265,46 @@ function Navbar({
                 Fav News
               </a>
             )}
-          </ul>
-          {loginuser && (
-            <ul
-              className="navbar-nav me-auto mb-2 mb-lg-0"
-              style={{ fontSize: "20px", fontWeight: "bold", color: "white" }}
-            >
-              {/* Weather data display in the navbar */}
-              <li className="nav-item">
-                <span className="nav-link" style={{ position: "relative" }}>
-                  {/* Display temperature */}
-                  ☁️{temp}°F{" "}
-                  {/* Display weather icon based on current condition */}
-                  <span
-                    className="weather-icon-hover"
-                    aria-label="Today's Weather"
-                    style={{ position: "relative", cursor: "default" }}
-                  >
-                    {icon} {/* Display the emoji based on currentCondition */}
+            {loginuser && (
+              <ul
+                className="navbar-nav me-auto mb-2 mb-lg-0"
+                style={{ fontSize: "20px", fontWeight: "bold", color: "white" }}
+              >
+                {/* Weather data display in the navbar */}
+                <li className="nav-item">
+                  <span className="nav-link" style={{ position: "relative" }}>
+                    {/* Display temperature */}
+                    {icon} {shortForecast}
+                    {" " + temp}°F{" "}
+                    {/* Display weather icon based on current condition */}
                     <span
-                      style={{
-                        visibility: "hidden",
-                        position: "absolute",
-                        left: "100%",
-                        marginLeft: "10px",
-                        backgroundColor: "white",
-                        padding: "5px 10px",
-                        border: "1px solid #ccc",
-                        whiteSpace: "nowrap",
-                        zIndex: 1000,
-                      }}
-                      className="tooltip-text"
+                      className="weather-icon-hover"
+                      aria-label="Today's Weather"
+                      style={{ position: "relative", cursor: "default" }}
                     >
-                      {detailedForecast}
+                      {icon} {/* Display the emoji based on currentCondition */}
+                      <span
+                        style={{
+                          visibility: "hidden",
+                          position: "absolute",
+                          left: "100%",
+                          marginLeft: "10px",
+                          backgroundColor: "white",
+                          padding: "5px 10px",
+                          border: "1px solid #ccc",
+                          whiteSpace: "nowrap",
+                          zIndex: 1000,
+                        }}
+                        className="tooltip-text"
+                      >
+                        {detailedForecast}
+                      </span>
                     </span>
                   </span>
-                </span>
-              </li>
-            </ul>
-          )}
+                </li>
+              </ul>
+            )}
+          </ul>
 
           <style jsx>{`
             .weather-icon-hover:hover .tooltip-text {

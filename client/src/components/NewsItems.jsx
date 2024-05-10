@@ -18,19 +18,47 @@ function NewsItems({ title, description, src, url, userid }) {
   };
 
   return (
-    title && description && src && url && (
-      <div className="card bg-light mb-3" style={{ backgroundColor:"#B49734", maxWidth: "345px", margin: "20px", boxShadow: "0 4px 8px rgba(0,0,0,0.7)"}}>
-        <img src={src} style={{ height: "200px", width: "100%", objectFit: "cover" }} className="card-img-top" alt={title} />
+    title &&
+    description &&
+    src &&
+    url && (
+      <div
+        className="card bg-light mb-3"
+        style={{
+          backgroundColor: "#B49734",
+          maxWidth: "345px",
+          margin: "20px",
+          boxShadow: "0px 0px 15px rgba(255,255,255,0.9)",
+        }}
+      >
+        <img
+          src={src}
+          style={{ height: "200px", width: "100%", objectFit: "cover" }}
+          className="card-img-top"
+          alt={title}
+        />
         <div className="card-body">
-          <h5 className="card-title">{title.length > 50 ? `${title.slice(0, 50)}...` : title}</h5>
-          <p className="card-text">{description.length > 90 ? `${description.slice(0, 90)}...` : description}</p>
-          <div className="d-flex justify-content-between align-items-center">
-            <a href={url} target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary">
+          <h5 className="card-title">
+            {title.length > 50 ? `${title.slice(0, 50)}...` : title}
+          </h5>
+          <p className="card-text">
+            {description.length > 90
+              ? `${description.slice(0, 90)}...`
+              : description}
+          </p>
+          <div className="d-flex justify-content-between align-items-center" style={{color:"black"}}>
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline-primary"
+              style={{color:"black"}}
+            >
               Read More
             </a>
-            <button onClick={handleLike} className="btn btn-outline-secondary">
+            <button onClick={handleLike} className="btn btn-outline-secondary" style={{color:"black"}}> 
               Save for Later
-            </button> {/* Corrected closing tag */}
+            </button>{" "}
           </div>
         </div>
       </div>

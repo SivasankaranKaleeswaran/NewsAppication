@@ -21,19 +21,16 @@ const db = mysql.createPool({
 
 console.log(process.env.PORT);
 
->>>>>>> main
 db.getConnection( (err, connection)=> {
     if (err) throw (err)
     console.log ("DB connected successful: " + connection.threadId)
  })
 
  app.use(express.json())
- //middleware to read req.body.<params>
- //CREATE USER
  app.post("/register", async (req,res) => {
  const user = req.body.email;
- const fname = req.body.fname;
- const lname = req.body.lname;
+ const fname = req.body.firstname;
+ const lname = req.body.lastname;
  const hashedPassword = await bcrypt.hash(req.body.password,10);
  db.getConnection( async (err, connection) => {
   if (err) throw (err)
@@ -41,8 +38,6 @@ db.getConnection( (err, connection)=> {
   const search_query = mysql.format(sqlSearch,[user])
   const sqlInsert = "INSERT INTO user VALUES (0,?,?,?,?)"
   const insert_query = mysql.format(sqlInsert,[user, hashedPassword, fname, lname])
-  // ? will be replaced by values
-  // ?? will be replaced by string
   await connection.query (search_query, async (err, result) => {
    if (err) throw (err)
    console.log("------> Search Results")
@@ -61,40 +56,10 @@ db.getConnection( (err, connection)=> {
     res.status(200).send("user Created Successfully")
    })
   }
- }) //end of connection.query()
- }) //end of db.getConnection()
- }) //end of app.post()
+ }) 
+ }) 
+ }) 
 
- {/*app.post("/login", (req, res)=> {
-    const user = req.body.name
-    const password = req.body.password
-    db.getConnection ( async (err, connection)=> {
-     if (err) throw (err)
-     const sqlSearch = "Select * from user where user = ?"
-     const search_query = mysql.format(sqlSearch,[user])
-     await connection.query (search_query, async (err, result) => {
-      connection.release()
-      
-      if (err) throw (err)
-      if (result.length == 0) {
-       console.log("--------> User does not exist")
-       res.sendStatus(404)
-      } 
-      else {
-         const hashedPassword = result[0].password
-        if (await bcrypt.compare(password, hashedPassword)) {
-        console.log("---------> Login Successful")
-        res.send(result[0])
-        } 
-        else {
-        console.log("---------> Password Incorrect")
-        res.send("Password incorrect!")
-        }
-      }
-     }) 
-    }) 
-    })
-*/}
 app.post("/login", async (req, res) => {
     const user = req.body.email;
     const password = req.body.password;
@@ -127,14 +92,14 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-    const sessionId = req.body.sessionId; // Assume sessionId is sent in the request body
+    const sessionId = req.body.sessionId; 
     if (sessions[sessionId]) {
-        delete sessions[sessionId]; // Invalidate the session
+        delete sessions[sessionId]; 
         console.log("---------> User Logged Out");
         res.send("Logged out successfully");
     } else {
         console.log("---------> No active session found");
-        res.sendStatus(404); // Not found
+        res.sendStatus(404);
     }
 });
 
@@ -149,8 +114,6 @@ app.post("/like", async (req,res) => {
          if (err) throw (err)
          const sqlInsert = "INSERT INTO likes VALUES (0,?,?,?,?,?)"
          const insert_query = mysql.format(sqlInsert,[url,user,src,title,desc])
-         // ? will be replaced by values
-         // ?? will be replaced by string
          console.log(insert_query);
         await connection.query (insert_query, (err, result)=> {
            connection.release()
@@ -163,7 +126,7 @@ app.post("/like", async (req,res) => {
 )})
 
 app.get("/like/:userid", (req, res) => {
-    const userId = req.params.userid; // Correctly access userid parameter from the route
+    const userId = req.params.userid; 
     db.getConnection((err, connection) => {
         if (err) {
             console.error("Failed to get database connection:", err);
@@ -171,10 +134,10 @@ app.get("/like/:userid", (req, res) => {
         }
 
         const sqlSearch = "SELECT * FROM likes WHERE user = ?";
-        const searchQuery = mysql.format(sqlSearch, [userId]); // Format the query correctly using the userId
+        const searchQuery = mysql.format(sqlSearch, [userId]); 
 
         connection.query(searchQuery, (err, result) => {
-            connection.release(); // Ensure connection is released in every case
+            connection.release(); 
 
             if (err) {
                 console.error("Error executing query:", err);
@@ -183,7 +146,7 @@ app.get("/like/:userid", (req, res) => {
 
             if (result.length === 0) {
                 console.log("Zero likes");
-                return res.sendStatus(204); // Use 204 No Content when there is no data to send
+                return res.sendStatus(204); 
             }
             console.log(result);
             res.status(200).send(result);
