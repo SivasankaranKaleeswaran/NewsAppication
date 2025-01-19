@@ -1,8 +1,6 @@
-# CS612 – Concepts and Structures in Internet Computing – Spring 2024
-## Final Project: News Application (News Plus)
+# News Application (News Plus)
 
 ### Repository
-Clone the repository using the following command:
 git clone https://github.com/SivasankaranKaleeswaran/NewsAppication.git
 
 ### Setup Instructions
@@ -55,21 +53,22 @@ npm start
 
 ### Execution Screenshots
 #### Actual Site with Latest News from the US
-![Actual Site Screenshot](path_to_image "Latest News Screenshot")
+![image](https://github.com/user-attachments/assets/c13ed14c-9972-4222-be37-dc56346ae9ad)
 
 #### Login Page
-![Login Page Screenshot](path_to_image "Login Page")
+![image](https://github.com/user-attachments/assets/7a9936e9-f0d7-4a8d-bacc-9c3c14da27c0)
 
 #### Registration Page
-![Registration Page Screenshot](path_to_image "Registration Page")
+![image](https://github.com/user-attachments/assets/d18c2323-f8ab-4646-82d1-82ae28904150)
 
 #### User Preferences Selection
 Users can select their preferences from the dropdown menu for country and category.
-![User Preferences Screenshot](path_to_image "User Preferences")
+![image](https://github.com/user-attachments/assets/2e9ec306-f5f1-4754-ae7a-7ff5666e9305)
 
 #### Favorites and Weather Details
 After logging in, users can access their favorite news and weather details.
-![Favorites and Weather Details Screenshot](path_to_image "Favorites and Weather Details")
+![image](https://github.com/user-attachments/assets/2e875cfa-8f47-445e-a936-3eed717ef231)
 
 #### Favorite News
-![Favorite News Screenshot](path_to_image "Favorite News")
+![image](https://github.com/user-attachments/assets/813f2056-e306-463c-a358-fcd03eab26c0)
+
